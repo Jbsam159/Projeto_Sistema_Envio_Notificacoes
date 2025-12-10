@@ -4,6 +4,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 
 import healthRoutes from "./routes/health_routes"
+import notificationsRoutes from "./modules/notifications/notification_routes"
 
 dotenv.config();
 
@@ -13,5 +14,6 @@ app.use(cors());
 
 // rota placeholder
 app.use("/health", healthRoutes)
+app.use("/notifications", notificationsRoutes)
 
 export default app;
