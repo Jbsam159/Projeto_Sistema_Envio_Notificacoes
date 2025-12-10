@@ -23,4 +23,8 @@ Fluxo básico: Cliente → API Gateway → Fila (RabbitMQ) → Worker → Envio 
 
 # Versão 0.1 - Estrutura Inicial do Projeto
 
-Status: Em andamento
+Status: Concluído Com Sucesso✅
+
+# Versão 0.2 - API Básica
+
+Status: Pendente
