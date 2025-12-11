@@ -23,8 +23,37 @@ Fluxo básico: Cliente → API Gateway → Fila (RabbitMQ) → Worker → Envio 
 
 # Versão 0.1 - Estrutura Inicial do Projeto
 
-Status: Concluído Com Sucesso✅
+Objetivo: montar a fundação do projeto e estrutura de pastas, garantindo organização
+Tecnologias utilizadas: Node.js, Typescript, Express, ts-node-dev, Git + Github
+Principais Atividadades:
+Criação da estrutura inicial do projeto com TypeScript.
+
+- Configuração do tsconfig.json e package.json.
+- Configuração do servidor Express.
+- Separação entre app.ts (aplicação) e server.ts (servidor), permitindo testes posteriores.
+- Criação da primeira rota de teste (/health).
+- Organização da arquitetura base do projeto, preparando para módulos, serviços e testes.
+- Commit inicial no GitHub, estabelecendo boas práticas de versionamento.
+  Status: Concluído Com Sucesso✅
 
 # Versão 0.2 - API Básica
 
-Status: Pendente
+Objetivo: Criação do primeiro módulo real da aplicação, implementando uma API funcional para fins de teste e validação
+Tecnologias Utilizadas: Express, TypeScript, Arquitetura em camadas
+Principais atividades:
+
+- Criação do módulo Notifications, com a seguinte estrutura:
+- notification.routes.ts
+- notification.controller.ts
+- notification.service.ts
+- notification.repository.ts
+- Implementação de dois endpoints:
+- POST /notifications – cria uma notificação
+- GET /notifications – lista todas as notificações
+- Implementação de um banco de dados em memória (fakeDB) para - testes.
+- Integração das rotas com o app.ts.
+- Testes manuais da API para validar funcionamento.
+- Commits organizados no GitHub documentando o progresso.
+  Status: Concluído Com Sucesso✅
+
+# Versão 0.3 - Testes Automatizados Com Jest
