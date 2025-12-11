@@ -21,6 +21,17 @@ Fluxo básico: Cliente → API Gateway → Fila (RabbitMQ) → Worker → Envio 
 13.Kubernetes
 14.Melhorias Futuras
 
+# Porque Testes Automatizados São Importantes?
+
+Os testes automatizados existem para resolver um problema simples, mas comum: Todo código quebra mais ceod ou mais tarde, e a medida que um sistema cresce, mais chances de algo quebrar quando você mexer em outra parte e possuem as seguintes qualidades:
+
+- Reduzem os riscos: Sem testes, cada alteração no código é um jogo de azar, com eles, você sabe imediatamente se quebrou algo
+- Permitem escalar a equipe
+- Mantêm o sistema funcionando por anos
+- Ajudam a confirmar se cada parte do sistema faz o que deveria fazer
+- O teste mostra exatamente: o que entra, o que sai, como deve funcionar
+- Valida requisistos do sistema
+
 # Versão 0.1 - Estrutura Inicial do Projeto
 
 Objetivo: montar a fundação do projeto e estrutura de pastas, garantindo organização
@@ -57,3 +68,16 @@ Principais atividades:
   Status: Concluído Com Sucesso✅
 
 # Versão 0.3 - Testes Automatizados Com Jest
+
+Objetivo: O foco foi garantir a qualidade e a confiabilidade da API por meio de testes automatizados. Foram implementados tanto testes unitários, responsáveis por validar partes isoladas da aplicação, quanto testes de integração, que verificam o comportamento real dos endpoints da API.
+Tecnologias Utilizadas: Jest, ts-jest, Supertest
+Atividades Realizadas:
+
+- Os testes unitários foram implementados para validar a lógica central da aplicação, especialmente a função sendNotification presente em notification_service.ts.
+- Os testes de integração simulam requisições reais aos endpoints definidos no Express.
+  Status: Concluído Com Sucesso✅
+
+# Versão 0.4 - Integração Com Banco de Dados
+
+Objetivo: Realizar a integração com o banco de dados PostgreSQL usando o Prisma ORM
+Status: Concluído Com Sucesso
