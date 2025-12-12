@@ -32,6 +32,12 @@ Os testes automatizados existem para resolver um problema simples, mas comum: To
 - O teste mostra exatamente: o que entra, o que sai, como deve funcionar
 - Valida requisistos do sistema
 
+# Porque O Docker é importante?
+
+O principal objetivo do docker é resolver o problema de "funciona na minha máquina" ele empacota todo o ambiente em uma caixa selada chamda de container contento todas as características do sistema que você está desenvolvendo, não importando o sistema operacional da outra máquina, vai rodar de forma idêntica
+
+Serve para fazer o backend rodar sem precisar instalar nada além do node e garanti que o projeto funcione igual em qualquer máquina
+
 # Versão 0.1 - Estrutura Inicial do Projeto
 
 Objetivo: montar a fundação do projeto e estrutura de pastas, garantindo organização
@@ -80,4 +86,9 @@ Atividades Realizadas:
 # Versão 0.4 - Integração Com Banco de Dados
 
 Objetivo: Realizar a integração com o banco de dados PostgreSQL usando o Prisma ORM
-Status: Concluído Com Sucesso
+Status: Concluído Com Sucesso✅
+
+# Versão 0.5 - Docker + Docker Compose
+
+Objetivo: Colocar nosso projeto rodando em containers no docker
+Status: Em andamento
