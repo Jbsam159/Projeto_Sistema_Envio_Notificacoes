@@ -1,8 +1,12 @@
-import prisma from "../src/database/prisma";
+import prisma from "./database/prisma";
 
-async function test() {
-  const result = await prisma.notification.findMany();
-  console.log(result);
+async function main() {
+  const notifications = await prisma.notification.findMany();
+  console.log(notifications);
 }
 
-test();
+main()
+  .catch(console.error)
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
