@@ -38,6 +38,15 @@ O principal objetivo do docker é resolver o problema de "funciona na minha máq
 
 Serve para fazer o backend rodar sem precisar instalar nada além do node e garanti que o projeto funcione igual em qualquer máquina
 
+# Explicando Linha por Linha do Docker-Compose.yml
+
+services: define quais containers existirão
+db: nome do serviço (não é o container ainda)
+image: Estamos usando a imagem oficial do PostgreSQL
+enviroment: É a criação do banco de dados, possuindo variáveis como usuário, senha e nome do banco (isso só roda na primeira vez, por causa do volume)
+ports: define as portas da máquina(esquerda) e do container(direita), exemplo: "5432:5432"
+volumes: Garante que se o container morrer o banco não perde dados
+
 # Versão 0.1 - Estrutura Inicial do Projeto
 
 Objetivo: montar a fundação do projeto e estrutura de pastas, garantindo organização
@@ -88,7 +97,8 @@ Atividades Realizadas:
 Objetivo: Realizar a integração com o banco de dados PostgreSQL usando o Prisma ORM
 Status: Concluído Com Sucesso✅
 
-# Versão 0.5 - Docker + Docker Compose
+# Versão 0.5.1 - Dockerizando apenas o PostgreSQL
 
+Motivos: Fica mais fácil de debugar, se o banco funcionar metade dos problemas acabam, prisma depende 100% do banco
 Objetivo: Colocar nosso projeto rodando em containers no docker
 Status: Em andamento

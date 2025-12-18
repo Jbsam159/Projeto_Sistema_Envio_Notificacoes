@@ -1,0 +1,30 @@
+
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_notificacoes
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: teka5925
+      POSTGRES_DB: Projeto_Sistema_Notificacoes
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: api_notificacoes
+    restart: always
+    command: sh -c "npx prisma migrate deploy && npm run start"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:teka5925@db:5432/Projeto_Sistema_Notificacoes?schema=public
+
+volumes:
+  postgres_data:
