@@ -1,7 +1,7 @@
-import { getRabbitMQChannel } from "./rabbitmq/connection";
+import { startNotificationConsumer } from "./consumers/NotificationConsumer";
 
 async function startWorker() {
-  await getRabbitMQChannel();
+  await startNotificationConsumer();
 }
 
 startWorker();
