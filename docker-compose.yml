@@ -26,5 +26,12 @@ services:
     environment:
       DATABASE_URL: postgresql://postgres:teka5925@db:5432/Projeto_Sistema_Notificacoes?schema=public
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"     # comunicação
+      - "15672:15672"   # painel web
+
 volumes:
   postgres_data:

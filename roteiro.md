@@ -97,8 +97,12 @@ Atividades Realizadas:
 Objetivo: Realizar a integração com o banco de dados PostgreSQL usando o Prisma ORM
 Status: Concluído Com Sucesso✅
 
-# Versão 0.5.1 - Dockerizando apenas o PostgreSQL
+# Versão 0.5 - Docker + Docker Compose
 
 Motivos: Fica mais fácil de debugar, se o banco funcionar metade dos problemas acabam, prisma depende 100% do banco
 Objetivo: Colocar nosso projeto rodando em containers no docker
-Status: Em andamento
+Status: Concluído Com Sucesso✅
+
+# Versão 0.6 - Mensageria com RabbitMQ
+
+Objetivo: Integrar o RabbitMQ ao projeto para que consigar publicar mensagens e comsumir mensagens
