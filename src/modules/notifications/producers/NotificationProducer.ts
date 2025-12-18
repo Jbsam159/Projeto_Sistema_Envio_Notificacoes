@@ -1,24 +1,21 @@
 import { getRabbitMQChannel } from "../../../shared/infra/rabbitmq/connection";
 import { NOTIFICATION_QUEUE } from "../queue";
 
-interface NotificationMessage {
-  userId: string;
-  type: "EMAIL" | "SMS" | "PUSH";
-  content: string;
+interface NotificationEvent {
+  notificationId: string;
 }
 
 export class NotificationProducer {
-  static async send(message: NotificationMessage) {
+  static async send(event: NotificationEvent) {
     const channel = await getRabbitMQChannel();
 
-    await channel.assertQueue(NOTIFICATION_QUEUE, {
-      durable: true,
-    });
+    await channel.assertQueue(NOTIFICATION_QUEUE, { durable: true });
 
     channel.sendToQueue(
       NOTIFICATION_QUEUE,
-      Buffer.from(JSON.stringify(message)),
+      Buffer.from(JSON.stringify(event)),
       { persistent: true }
     );
   }
 }
+

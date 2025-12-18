@@ -1,23 +1,23 @@
 import app from "./app";
 import { startNotificationConsumer } from "./modules/notifications/consumers/NotificationConsumer";
-import { NotificationProducer } from "./modules/notifications/producers/NotificationProducer";
 const PORT = process.env.PORT || 3000;
+import { CreateNotificationService } from "./modules/notifications/services/CreateNotificationService";
 
 startNotificationConsumer()
 
+const createNotificationService = new CreateNotificationService();
+
 setTimeout(async () => {
-
-  console.log("✉️ Enviando mensagem de teste...");
-
-  await NotificationProducer.send({
-    userId: "123",
+  const notification = await createNotificationService.execute({
     type: "EMAIL",
-    content: "Teste de mensageria",
+    recipient: "user@test.com",
+    message: "Teste de mensageria Fase 6.5",
   });
 
-  console.log("✅ Mensagem enviada");
-
+  console.log("📝 Notificação criada:", notification.id);
 }, 5000);
+
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

@@ -1,23 +1,41 @@
-import amqp from "amqplib"
+import amqp from "amqplib";
 
 let connection: any;
-let channel: any
+let channel: any;
 
-export async function getRabbitMQChannel(){
+const RABBITMQ_URL = "amqp://rabbitmq:5672";
 
-  if(channel) return channel;
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  console.log("🔌 Conectando ao RabbitMQ...");
+export async function getRabbitMQChannel(
+  retries = 10,
+  delay = 3000
+) {
+  if (channel) return channel;
 
-  connection = await amqp.connect("amqp://rabbitmq:5672");
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      console.log(`🔌 Tentando conectar ao RabbitMQ (tentativa ${attempt})...`);
 
-  console.log("✅ Conectado ao RabbitMQ");
+      connection = await amqp.connect(RABBITMQ_URL);
 
+      console.log("✅ Conectado ao RabbitMQ");
 
-  channel = await connection.createChannel()
+      channel = await connection.createChannel();
 
-  console.log("📡 Channel criado");
+      console.log("📡 Channel criado");
 
-  return channel
+      return channel;
+    } catch (error) {
+      console.error("❌ Falha ao conectar no RabbitMQ");
 
+      if (attempt === retries) {
+        throw error;
+      }
+
+      await sleep(delay);
+    }
+  }
 }
