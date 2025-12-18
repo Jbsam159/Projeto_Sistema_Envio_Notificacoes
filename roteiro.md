@@ -106,3 +106,14 @@ Status: Concluído Com Sucesso✅
 # Versão 0.6 - Mensageria com RabbitMQ
 
 Objetivo: Integrar o RabbitMQ ao projeto para que consigar publicar mensagens e comsumir mensagens
+Status: Concluído Com Sucesso✅
+
+# Versão 0.7 - Worker do Projeto
+
+Objetivo: Integrar um microserviço que separado que:
+
+- Não expõe API HTTP
+- Fica escutando uma fila
+- Processa mensagens de forma assíncrona
+- Pode falhar, reiniciar e continuar do ponto certo
+  Status: Em andamento

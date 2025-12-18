@@ -33,5 +33,15 @@ services:
       - "5672:5672"     # comunicação
       - "15672:15672"   # painel web
 
+  worker:
+    build: ./worker
+    container_name: worker_notificacoes
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./worker:/worker
+    command: npx ts-node-dev src/server.ts
+
+
 volumes:
   postgres_data:
