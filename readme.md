@@ -68,3 +68,18 @@ Funcionalidades Principais
 - Versionamento correto
 - Logger / Monitoramento
 - Dockerização
+
+⚙️ Evidências de Funcionamento
+
+- Retry automático do Worker ao iniciar antes do RabbitMQ:
+  worker_notificacoes | 🔌 Worker conectando ao RabbitMQ (tentativa 1)...
+  worker_notificacoes | ❌ Erro ao conectar no RabbitMQ: connect ECONNREFUSED
+  worker_notificacoes | 🔌 Worker conectando ao RabbitMQ (tentativa 2)...
+  worker_notificacoes | 🔌 Worker conectando ao RabbitMQ (tentativa 3)...
+  worker_notificacoes | ✅ Worker conectado ao RabbitMQ
+- Comunicação assíncrona entre API e Worker via RabbitMQ:
+  worker_notificacoes | 👂 Worker escutando fila: notifications.send
+- Fluxo completo: API → Fila → Worker:
+  api_notificacoes | 📝 Notificação criada: 52624fc8-7113-46c3-93cb-b636e432f7c3
+  api_notificacoes | 🔔 Enviando notificação 52624fc8-7113-46c3-93cb-b636e432f7c3
+  worker_notificacoes | 📥 Mensagem recebida: { notificationId: '52624fc8-7113-46c3-93cb-b636e432f7c3' }
