@@ -38,9 +38,10 @@ services:
     container_name: worker_notificacoes
     depends_on:
       - rabbitmq
-    volumes:
-      - ./worker:/worker
-    command: npx ts-node-dev src/server.ts
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:teka5925@db:5432/Projeto_Sistema_Notificacoes?schema=public
+
 
 
 volumes:

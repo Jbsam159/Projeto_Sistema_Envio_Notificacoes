@@ -1,6 +1,7 @@
 import { getRabbitMQChannel } from "../rabbitmq/connection";
 import { QUEUES } from "../rabbitmq/queues";
 import { PrismaClient } from "@prisma/client";
+import { handleRetry } from "./handleRetry";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +11,19 @@ export async function startNotificationConsumer() {
   await channel.assertQueue(QUEUES.NOTIFICATIONS, {
     durable: true,
   });
+
+  await channel.assertQueue(QUEUES.NOTIFICATIONS_RETRY, {
+  durable: true,
+  arguments: {
+    "x-message-ttl": 5000, // 5 segundos
+    "x-dead-letter-exchange": "",
+    "x-dead-letter-routing-key": QUEUES.NOTIFICATIONS,
+  },
+});
+
+await channel.assertQueue(QUEUES.NOTIFICATIONS_DLQ, {
+  durable: true,
+});
 
   console.log("👂 Worker escutando fila:", QUEUES.NOTIFICATIONS);
 
@@ -39,6 +53,10 @@ export async function startNotificationConsumer() {
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      if (notification.type === "EMAIL") {
+        throw new Error("Erro simulado no envio de EMAIL");
+      }
+
       await prisma.notification.update({
         where: { id: notification.id },
         data: { status: "SENT" },
@@ -49,7 +67,7 @@ export async function startNotificationConsumer() {
       channel.ack(msg);
     } catch (error) {
       console.error("❌ Erro ao processar notificação", error);
-      channel.nack(msg, false, false); // sem retry ainda
+      handleRetry(channel, msg);
     }
   });
 }
